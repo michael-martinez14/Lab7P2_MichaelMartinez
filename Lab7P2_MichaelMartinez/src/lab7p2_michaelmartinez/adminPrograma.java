@@ -50,15 +50,17 @@ public class adminPrograma {
         FileWriter fw = null;
         BufferedWriter bw = null;
         try {
+            System.out.println("holaa");
             fw = new FileWriter(archivo, false);
             bw = new BufferedWriter(fw);
             for (Producto p : listaProductos) {
                 bw.write(p.getId() + ","); 
-                bw.write(p.getNombre() + ",");
                 bw.write(p.getCategory() + ",");
-                bw.write(p.getPrecio() + ",");
                 bw.write(p.getAisle()+ ",");
                 bw.write(p.getBin()+ ",");
+                bw.write(p.getNombre() + ",");
+                bw.write(p.getPrecio() + ",");
+               
             }
             bw.flush();
         } catch (Exception ex) {
@@ -82,16 +84,7 @@ public class adminPrograma {
                             Integer.parseInt(token[2]),Integer.parseInt(token[3]),token[4],Double.parseDouble(token[5])));
                 }
                 
-//                sc = new Scanner(archivo);
-//                sc.useDelimiter(",");
-//                while (sc.hasNext()) {
-//                    listaProductos.add(new Producto(sc.nextInt(),
-//                                    sc.nextInt(),
-//                                    sc.nextInt(),sc.nextInt(),sc.next(),sc.nextDouble()
-//                                 )
-//                    );
-//                    
-//                }
+//                
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
@@ -99,7 +92,7 @@ public class adminPrograma {
             br.close();
             fr.close();
         }else{
-            System.out.println("El archivo no existe");
+            
         }
             
     }

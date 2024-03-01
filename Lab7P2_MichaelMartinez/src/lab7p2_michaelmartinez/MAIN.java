@@ -4,7 +4,12 @@
  */
 package lab7p2_michaelmartinez;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.plaf.FileChooserUI;
@@ -37,6 +42,8 @@ public class MAIN extends javax.swing.JFrame {
         pp_loadRefresh = new javax.swing.JPopupMenu();
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        jMenuItem10 = new javax.swing.JMenuItem();
         tf_busqueda = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -67,6 +74,9 @@ public class MAIN extends javax.swing.JFrame {
         jMenuItem9.setText("Refresh");
         pp_loadRefresh.add(jMenuItem9);
 
+        jMenuItem10.setText("Limpiar tabla");
+        jPopupMenu1.add(jMenuItem10);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jButton1.setText("ENTER");
@@ -87,7 +97,14 @@ public class MAIN extends javax.swing.JFrame {
 
         jt_tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
                 "ID", "NOMBRE", "CATEGORY", "PRICE", "AISLE", "BIN"
@@ -101,11 +118,26 @@ public class MAIN extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
+        jt_tabla.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jt_tablaMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jt_tabla);
 
         jMenu1.setText("FILE");
+        jMenu1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu1ActionPerformed(evt);
+            }
+        });
 
         jMenuItem1.setText("NEW FILE");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem1);
 
         jMenuItem2.setText("IMPORT FILE");
@@ -201,7 +233,10 @@ public class MAIN extends javax.swing.JFrame {
             Object v = jt_arbol.getSelectionPath().getLastPathComponent();
             nodo_seleccionado = (DefaultMutableTreeNode) v;
              pp_loadRefresh.show(evt.getComponent(), evt.getX(), evt.getY());
+        }else{
+            System.out.println("No");
         }
+                
     }//GEN-LAST:event_jt_arbolMouseClicked
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
@@ -210,25 +245,72 @@ public class MAIN extends javax.swing.JFrame {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
-        
+        DefaultTableModel modeloTabla=(DefaultTableModel)jt_tabla.getModel();
         String textoField=tf_busqueda.getText();
         String []token=textoField.split(" ");
         String nuevo=token[1];
         
         //
+        if (token[0].equalsIgnoreCase("./load")) {
+            try {
+                cargarArchivo(nuevo);
+            } catch (IOException ex) {
+                ;
+            }
+        } else if (token[0].equalsIgnoreCase("./create")) {
+            String nombreArchivo = JOptionPane.showInputDialog("Ingrese el nombre del nuevo archivo");
+            try {
+                agregarArchivo(nombreArchivo);
+            } catch (IOException ex) {
+
+            }
+        }else if(token[0].equalsIgnoreCase("./clear")){
+            modeloTabla.setRowCount(0);
+            jt_tabla.setModel(modeloTabla);
+        }else if(token[0].equalsIgnoreCase("./refresh")){
+            
+        }
         
-        System.out.println(nuevo);
-        cargarArchivo(nuevo);
+        
         
     }//GEN-LAST:event_jButton1MouseClicked
 
-    private void cargarArchivo(String nombreArchivo){
+    private void jt_tablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jt_tablaMouseClicked
+        // TODO add your handling code here:
+        if (evt.isMetaDown()) {
+             jPopupMenu1.show(evt.getComponent(), evt.getX(), evt.getY());
+        }
+    }//GEN-LAST:event_jt_tablaMouseClicked
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        String nombreArchivo=JOptionPane.showInputDialog(this,"Ingrese el nombre del nuevo archivo");
+        try {
+            agregarArchivo(nombreArchivo);
+        } catch (IOException ex) {
+            
+        }
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
+        // TODO add your handling code here:
+        String nombreArchivo=JOptionPane.showInputDialog(this,"Ingrese el nombre del archivo");
+        try {
+            cargarArchivo(nombreArchivo);
+        } catch (IOException ex) {
+            
+        }
+    }//GEN-LAST:event_jMenu1ActionPerformed
+
+    private void cargarArchivo(String nombreArchivo) throws IOException{
         adminPrograma admin=new adminPrograma("./"+nombreArchivo);
         
         //clase admin
         
         admin.cargarArchivo();
+        
         DefaultTableModel modeloTabla=(DefaultTableModel)jt_tabla.getModel();
+        modeloTabla.setRowCount(0);
         Object[] newRow = new Object[6];
         for (int i = 0; i < admin.getListaProductos().size(); i++) {
                     
@@ -241,13 +323,67 @@ public class MAIN extends javax.swing.JFrame {
                     modeloTabla.addRow(newRow);
                 
             }
-        for (int i = 0; i <newRow.length ; i++) {
-            System.out.println(newRow[i]);
-        }
+        
         
            jt_tabla.setModel(modeloTabla);
+           
         
     }
+    
+    private void agregarArchivo(String nombreArchivo) throws IOException{
+        adminPrograma admin=new adminPrograma("./"+nombreArchivo);
+        DefaultTableModel modeloTabla=(DefaultTableModel)jt_tabla.getModel();
+       
+        FileWriter fw = null;
+        BufferedWriter bw = null;
+        try { 
+            fw = new FileWriter(new File(nombreArchivo), false);
+            bw = new BufferedWriter(fw);
+            
+            for (int i = 0; i < modeloTabla.getRowCount(); i++) {
+                int id = 0, category = 0, aisle = 0, bin = 0;
+                String nombre = null;
+                double precio;
+                for (int j = 0; j < modeloTabla.getColumnCount(); j++) {
+                    
+                    switch (j) {
+                        case 0:
+                            id=((Producto)modeloTabla.getValueAt(i, j)).getId();
+//                            bw.write(((Producto)modeloTabla.getValueAt(i, j)).getId()+",");
+                            break;
+                        case 1:
+                            category=((Producto)modeloTabla.getValueAt(i, j)).getCategory();
+
+                            break;
+                        case 2:
+                           aisle=((Producto)modeloTabla.getValueAt(i, j)).getBin();
+
+                            break;
+                        case 3:
+                            bin=((Producto)modeloTabla.getValueAt(i, j)).getAisle();
+                            break;
+                        case 4:
+                            nombre=((Producto)modeloTabla.getValueAt(i, j)).getNombre();
+
+                            break;
+                        case 5:
+                            precio=((Producto)modeloTabla.getValueAt(i, j)).getPrecio();
+
+                            break;
+                        default:
+                            ;
+                    }
+                }//fin primer for
+                admin.getListaProductos().add(new Producto(id, category, bin, aisle, nombre, bin));
+            }
+            admin.cargarArchivo();
+            bw.flush();
+        } catch (Exception ex) {
+        }
+        bw.close();
+        fw.close();
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -291,6 +427,7 @@ DefaultMutableTreeNode nodo_seleccionado;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
@@ -299,6 +436,7 @@ DefaultMutableTreeNode nodo_seleccionado;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
+    private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTree jt_arbol;

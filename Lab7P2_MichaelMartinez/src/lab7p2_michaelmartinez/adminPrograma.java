@@ -4,8 +4,10 @@
  */
 package lab7p2_michaelmartinez;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -65,23 +67,37 @@ public class adminPrograma {
         fw.close();
     }
 
-    public void cargarArchivo() {
-        Scanner sc = null;
-        listaProductos = new ArrayList();
+    public void cargarArchivo() throws IOException {
+        //Scanner sc = null;
+        FileReader fr=null;
+        BufferedReader br=null;
         if (archivo.exists()) {
             try {
-                sc = new Scanner(archivo);
-                sc.useDelimiter(",");
-                while (sc.hasNext()) {
-                    listaProductos.add(new Producto(sc.nextInt(),
-                                    sc.nextInt(),
-                                    sc.nextInt(),sc.nextInt(),sc.next(),sc.nextDouble()
-                                 )
-                    );
+                fr=new FileReader(archivo);
+                br=new BufferedReader(fr);
+                String linea="";
+                while ((linea=br.readLine()) !=null) {
+                    String []token =linea.split(",");
+                    listaProductos.add(new Producto(Integer.parseInt(token[0]),Integer.parseInt(token[1]),
+                            Integer.parseInt(token[2]),Integer.parseInt(token[3]),token[4],Double.parseDouble(token[5])));
                 }
+                
+//                sc = new Scanner(archivo);
+//                sc.useDelimiter(",");
+//                while (sc.hasNext()) {
+//                    listaProductos.add(new Producto(sc.nextInt(),
+//                                    sc.nextInt(),
+//                                    sc.nextInt(),sc.nextInt(),sc.next(),sc.nextDouble()
+//                                 )
+//                    );
+//                    
+//                }
             } catch (Exception ex) {
+                ex.printStackTrace();
             }
-            sc.close();
+            //sc.close();
+            br.close();
+            fr.close();
         }else{
             System.out.println("El archivo no existe");
         }

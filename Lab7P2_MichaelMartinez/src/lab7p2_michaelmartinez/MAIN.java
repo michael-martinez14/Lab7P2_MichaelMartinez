@@ -4,6 +4,9 @@
  */
 package lab7p2_michaelmartinez;
 
+import java.io.File;
+import javax.swing.JFileChooser;
+import javax.swing.plaf.FileChooserUI;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
@@ -189,6 +192,11 @@ public class MAIN extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jt_arbolMouseClicked
 
+    private void cargarArchivo(File archivo){
+        adminPrograma admin=new adminPrograma();
+        admin.
+        
+    }
     /**
      * @param args the command line arguments
      */

@@ -9,9 +9,9 @@ package lab7p2_michaelmartinez;
  * @author Michael Martínez
  */
 public class Producto {
-    int id, category,bin,aisle;
-    String nombre;
-    double precio;
+    private int id, category,bin,aisle;
+    private String nombre;
+    private double precio;
 
     public Producto() {
     }

@@ -7,6 +7,7 @@ package lab7p2_michaelmartinez;
 import java.io.File;
 import javax.swing.JFileChooser;
 import javax.swing.plaf.FileChooserUI;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
@@ -55,6 +56,11 @@ public class MAIN extends javax.swing.JFrame {
         jMenuItem6 = new javax.swing.JMenuItem();
 
         jMenuItem8.setText("Reload");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
         pp_loadRefresh.add(jMenuItem8);
 
         jMenuItem9.setText("Refresh");
@@ -63,6 +69,11 @@ public class MAIN extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jButton1.setText("ENTER");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
 
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("CSVs");
         jt_arbol.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
@@ -192,9 +203,35 @@ public class MAIN extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jt_arbolMouseClicked
 
-    private void cargarArchivo(File archivo){
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+        String textoField=tf_busqueda.getText();
+        String 
+        if (tf) {
+            
+        }
+    }//GEN-LAST:event_jButton1MouseClicked
+
+    private void cargarArchivo(){
         adminPrograma admin=new adminPrograma();
-        admin.
+        admin.cargarArchivo();
+        DefaultTableModel modeloTabla=(DefaultTableModel)jt_tabla.getModel();
+        for (int i = 0; i < admin.getListaProductos().size(); i++) {
+                    Object[] newRow = new Object[6];
+                    newRow[0] = admin.getListaProductos().get(i).getId();
+                    newRow[1] = admin.getListaProductos().get(i).getNombre();
+                    newRow[2] = admin.getListaProductos().get(i).getCategory();
+                    newRow[3] = admin.getListaProductos().get(i).getPrecio();
+                    newRow[4] = admin.getListaProductos().get(i).getAisle();
+                    newRow[5] = admin.getListaProductos().get(i).getBin();
+                    modeloTabla.addRow(newRow);
+                
+            }
+           jt_tabla.setModel(modeloTabla);
         
     }
     /**

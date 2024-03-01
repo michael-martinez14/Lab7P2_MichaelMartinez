@@ -64,16 +64,16 @@ public class adminPrograma {
     }
 
     public void cargarArchivo() {
-        Scanner sc = null;//limpiar el scanner
-        listaPersonas = new ArrayList();//llimpiar el arraylist
+        Scanner sc = null;
+        listaProductos = new ArrayList();
         if (archivo.exists()) {
             try {
                 sc = new Scanner(archivo);
-                sc.useDelimiter(";");
+                sc.useDelimiter(",");
                 while (sc.hasNext()) {
-                    listaPersonas.add(new Persona(sc.nextInt(),
-                                    sc.next(),
-                                    sc.nextInt()
+                    listaProductos.add(new Producto(sc.nextInt(),
+                                    sc.nextInt(),
+                                    sc.nextInt(),sc.nextInt(),sc.next(),sc.nextDouble()
                                  )
                     );
                 }

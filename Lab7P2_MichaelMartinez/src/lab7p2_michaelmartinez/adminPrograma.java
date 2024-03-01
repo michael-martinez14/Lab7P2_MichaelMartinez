@@ -19,7 +19,9 @@ public class adminPrograma {
     private ArrayList<Producto> listaProductos=new ArrayList();
     private File archivo=null;
 
-    public adminPrograma() {
+    
+    public adminPrograma(String path) {
+        archivo = new File(path);
     }
 
     public ArrayList<Producto> getListaProductos() {
@@ -80,7 +82,10 @@ public class adminPrograma {
             } catch (Exception ex) {
             }
             sc.close();
-        }//FIN IF
+        }else{
+            System.out.println("El archivo no existe");
+        }
+            
     }
     
             

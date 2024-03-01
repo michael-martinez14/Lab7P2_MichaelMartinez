@@ -6,6 +6,7 @@ package lab7p2_michaelmartinez;
 
 import java.io.File;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.plaf.FileChooserUI;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -209,19 +210,28 @@ public class MAIN extends javax.swing.JFrame {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
+        
         String textoField=tf_busqueda.getText();
-        String 
-        if (tf) {
-            
-        }
+        String []token=textoField.split(" ");
+        String nuevo=token[1];
+        
+        //
+        
+        System.out.println(nuevo);
+        cargarArchivo(nuevo);
+        
     }//GEN-LAST:event_jButton1MouseClicked
 
-    private void cargarArchivo(){
-        adminPrograma admin=new adminPrograma();
+    private void cargarArchivo(String nombreArchivo){
+        adminPrograma admin=new adminPrograma("./"+nombreArchivo);
+        
+        //clase admin
+        
         admin.cargarArchivo();
         DefaultTableModel modeloTabla=(DefaultTableModel)jt_tabla.getModel();
+        Object[] newRow = new Object[6];
         for (int i = 0; i < admin.getListaProductos().size(); i++) {
-                    Object[] newRow = new Object[6];
+                    
                     newRow[0] = admin.getListaProductos().get(i).getId();
                     newRow[1] = admin.getListaProductos().get(i).getNombre();
                     newRow[2] = admin.getListaProductos().get(i).getCategory();
@@ -231,6 +241,10 @@ public class MAIN extends javax.swing.JFrame {
                     modeloTabla.addRow(newRow);
                 
             }
+        for (int i = 0; i <newRow.length ; i++) {
+            System.out.println(newRow[i]);
+        }
+        
            jt_tabla.setModel(modeloTabla);
         
     }

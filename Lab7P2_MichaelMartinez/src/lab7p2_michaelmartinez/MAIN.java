@@ -181,6 +181,12 @@ public class MAIN extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        tf_busqueda.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tf_busquedaMouseClicked(evt);
+            }
+        });
+
         jButton1.setText("ENTER");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -341,6 +347,7 @@ public class MAIN extends javax.swing.JFrame {
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jt_arbolMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jt_arbolMouseClicked
@@ -442,8 +449,18 @@ public class MAIN extends javax.swing.JFrame {
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         // TODO add your handling code here:
-        
+        jd_descrip.pack();//hacer mas grande
+        jd_descrip.setLocationRelativeTo(this);//ubicacion con respecto al padre
+        jd_descrip.setModal(true);//bloquear las otras ventanas
+        jd_descrip.setVisible(true);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void tf_busquedaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_busquedaMouseClicked
+        // TODO add your handling code here:
+         DefaultTableModel modeloTabla=(DefaultTableModel)jt_tabla.getModel();
+        modeloTabla.setRowCount(0);
+        jt_tabla.setModel(modeloTabla);
+    }//GEN-LAST:event_tf_busquedaMouseClicked
 
     private void cargarArchivo(String nombreArchivo) throws IOException{
         adminPrograma admin=new adminPrograma("./"+nombreArchivo);

@@ -50,7 +50,7 @@ public class adminPrograma {
         FileWriter fw = null;
         BufferedWriter bw = null;
         try {
-            System.out.println("hii");
+            
             fw = new FileWriter(archivo, false);
             bw = new BufferedWriter(fw);
             for (Producto p : listaProductos) {

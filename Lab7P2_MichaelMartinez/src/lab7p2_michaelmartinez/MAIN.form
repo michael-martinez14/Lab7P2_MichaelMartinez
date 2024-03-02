@@ -335,6 +335,9 @@
   </Layout>
   <SubComponents>
     <Component class="javax.swing.JTextField" name="tf_busqueda">
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tf_busquedaMouseClicked"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButton1">
       <Properties>

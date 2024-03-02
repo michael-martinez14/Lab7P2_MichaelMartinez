@@ -44,6 +44,20 @@ public class MAIN extends javax.swing.JFrame {
         jMenuItem9 = new javax.swing.JMenuItem();
         jPopupMenu1 = new javax.swing.JPopupMenu();
         jMenuItem10 = new javax.swing.JMenuItem();
+        jd_descrip = new javax.swing.JDialog();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
         tf_busqueda = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -76,6 +90,94 @@ public class MAIN extends javax.swing.JFrame {
 
         jMenuItem10.setText("Limpiar tabla");
         jPopupMenu1.add(jMenuItem10);
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel1.setText("DESCRIPCION");
+
+        jLabel2.setText("ID");
+
+        jLabel3.setText("NOMBRE");
+
+        jLabel4.setText("CODIGO");
+
+        jLabel5.setText("AISLE");
+
+        jLabel6.setText("Identificación de producto");
+
+        jLabel7.setText("Nombre de producto");
+
+        jLabel8.setText("Código del producto");
+
+        jLabel9.setText("Numero de pasillo que se encuentra el producto");
+
+        jLabel10.setText("PRECIO");
+
+        jLabel11.setText("Precio del producto");
+
+        jLabel12.setText("BIN");
+
+        jLabel13.setText("Lugar exacto");
+
+        javax.swing.GroupLayout jd_descripLayout = new javax.swing.GroupLayout(jd_descrip.getContentPane());
+        jd_descrip.getContentPane().setLayout(jd_descripLayout);
+        jd_descripLayout.setHorizontalGroup(
+            jd_descripLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_descripLayout.createSequentialGroup()
+                .addGroup(jd_descripLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jd_descripLayout.createSequentialGroup()
+                        .addGap(235, 235, 235)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jd_descripLayout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addGroup(jd_descripLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jd_descripLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel2)
+                                .addComponent(jLabel4)
+                                .addComponent(jLabel5))
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel12))
+                        .addGap(61, 61, 61)
+                        .addGroup(jd_descripLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel13))))
+                .addContainerGap(234, Short.MAX_VALUE))
+        );
+        jd_descripLayout.setVerticalGroup(
+            jd_descripLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_descripLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
+                .addGroup(jd_descripLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel6))
+                .addGap(26, 26, 26)
+                .addGroup(jd_descripLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel7))
+                .addGap(33, 33, 33)
+                .addGroup(jd_descripLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel8))
+                .addGap(31, 31, 31)
+                .addGroup(jd_descripLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel9))
+                .addGap(26, 26, 26)
+                .addGroup(jd_descripLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel11))
+                .addGap(30, 30, 30)
+                .addGroup(jd_descripLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(jLabel13))
+                .addContainerGap(121, Short.MAX_VALUE))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -111,7 +213,7 @@ public class MAIN extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Integer.class, java.lang.Integer.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Double.class, java.lang.Integer.class, java.lang.Integer.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -155,9 +257,19 @@ public class MAIN extends javax.swing.JFrame {
         jMenu4.setText("CLEAR");
 
         jMenuItem3.setText("Clear Command Line:");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem3);
 
         jMenuItem4.setText("CLEAR TABLE");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem4);
 
         jMenu2.add(jMenu4);
@@ -170,6 +282,11 @@ public class MAIN extends javax.swing.JFrame {
         jMenu3.setText("HELP");
 
         jMenuItem5.setText("PRODUCT STRUCTURE");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem5);
 
         jMenuItem6.setText("COMMANDS");
@@ -288,7 +405,7 @@ public class MAIN extends javax.swing.JFrame {
         try {
             agregarArchivo(nombreArchivo);
         } catch (IOException ex) {
-            
+            System.out.println("Hola");
         }
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
@@ -301,6 +418,24 @@ public class MAIN extends javax.swing.JFrame {
             
         }
     }//GEN-LAST:event_jMenu1ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        // TODO add your handling code here:
+        tf_busqueda.setText("");
+        JOptionPane.showMessageDialog(this, "Barra de busqueda limpia");
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        // TODO add your handling code here:
+         DefaultTableModel modeloTabla=(DefaultTableModel)jt_tabla.getModel();
+        modeloTabla.setRowCount(0);
+        jt_tabla.setModel(modeloTabla);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void cargarArchivo(String nombreArchivo) throws IOException{
         adminPrograma admin=new adminPrograma("./"+nombreArchivo);
@@ -330,58 +465,59 @@ public class MAIN extends javax.swing.JFrame {
         
     }
     
-    private void agregarArchivo(String nombreArchivo) throws IOException{
+    private void agregarArchivo(String nombreArchivo) throws IOException {
         adminPrograma admin=new adminPrograma("./"+nombreArchivo);
         DefaultTableModel modeloTabla=(DefaultTableModel)jt_tabla.getModel();
-       
-        FileWriter fw = null;
-        BufferedWriter bw = null;
-        try { 
-            fw = new FileWriter(new File(nombreArchivo), false);
-            bw = new BufferedWriter(fw);
-            
+        
             for (int i = 0; i < modeloTabla.getRowCount(); i++) {
                 int id = 0, category = 0, aisle = 0, bin = 0;
                 String nombre = null;
-                double precio;
+                double precio = 0;
                 for (int j = 0; j < modeloTabla.getColumnCount(); j++) {
-                    
-                    switch (j) {
+                    if (modeloTabla.getValueAt(i, j)==null) {
+                        
+                    }else{
+                         switch (j) {
                         case 0:
-                            id=((Producto)modeloTabla.getValueAt(i, j)).getId();
+                            
+                            id=((Integer)(modeloTabla.getValueAt(i, j)));
 //                            bw.write(((Producto)modeloTabla.getValueAt(i, j)).getId()+",");
                             break;
                         case 1:
-                            category=((Producto)modeloTabla.getValueAt(i, j)).getCategory();
+                            nombre=(String)modeloTabla.getValueAt(i, j);
 
                             break;
                         case 2:
-                           aisle=((Producto)modeloTabla.getValueAt(i, j)).getBin();
+                           category=((Integer)modeloTabla.getValueAt(i, j));
 
                             break;
                         case 3:
-                            bin=((Producto)modeloTabla.getValueAt(i, j)).getAisle();
+                            precio=((Double)modeloTabla.getValueAt(i, j));
                             break;
                         case 4:
-                            nombre=((Producto)modeloTabla.getValueAt(i, j)).getNombre();
+                            aisle=((Integer)modeloTabla.getValueAt(i, j));
 
                             break;
                         case 5:
-                            precio=((Producto)modeloTabla.getValueAt(i, j)).getPrecio();
+                            bin=((Integer)modeloTabla.getValueAt(i, j));
 
                             break;
                         default:
                             ;
                     }
+                    }
                 }//fin primer for
-                admin.getListaProductos().add(new Producto(id, category, bin, aisle, nombre, bin));
+                
+                if (id ==0 || category == 0 || aisle == 0 || bin == 0 || nombre == null || precio == 0.0) {
+                    admin.getListaProductos().add(new Producto(id, category, bin, aisle, nombre, bin));
+
+                } else {
+                    admin.getListaProductos().add(new Producto(id, category, bin, aisle, nombre, bin));
+                }
+                
+               
             }
-            admin.cargarArchivo();
-            bw.flush();
-        } catch (Exception ex) {
-        }
-        bw.close();
-        fw.close();
+            admin.escribirArchivo();
     }
     
     /**
@@ -421,6 +557,19 @@ public class MAIN extends javax.swing.JFrame {
 DefaultMutableTreeNode nodo_seleccionado;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -439,6 +588,7 @@ DefaultMutableTreeNode nodo_seleccionado;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JDialog jd_descrip;
     private javax.swing.JTree jt_arbol;
     private javax.swing.JTable jt_tabla;
     private javax.swing.JPopupMenu pp_loadRefresh;

@@ -362,6 +362,8 @@ public class MAIN extends javax.swing.JFrame {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
+        DefaultTreeModel modeloArbol=(DefaultTreeModel)jt_arbol.getModel();
+        DefaultMutableTreeNode raiz=(DefaultMutableTreeNode)modeloArbol.getRoot();
         DefaultTableModel modeloTabla=(DefaultTableModel)jt_tabla.getModel();
         String textoField=tf_busqueda.getText();
         String []token=textoField.split(" ");
@@ -371,13 +373,19 @@ public class MAIN extends javax.swing.JFrame {
         if (token[0].equalsIgnoreCase("./load")) {
             try {
                 cargarArchivo(nuevo);
+                DefaultMutableTreeNode nuevoarchivo=new DefaultMutableTreeNode(nuevo);
+                raiz.add(nuevoarchivo);
+                modeloArbol.reload();
             } catch (IOException ex) {
                 ;
             }
         } else if (token[0].equalsIgnoreCase("./create")) {
-            String nombreArchivo = JOptionPane.showInputDialog("Ingrese el nombre del nuevo archivo");
+            String nombreArchivo = token[1];
             try {
                 agregarArchivo(nombreArchivo);
+                DefaultMutableTreeNode nuevoarchivo=new DefaultMutableTreeNode(nuevo);
+                raiz.add(nuevoarchivo);
+                modeloArbol.reload();
             } catch (IOException ex) {
 
             }
@@ -500,22 +508,20 @@ public class MAIN extends javax.swing.JFrame {
                             break;
                         case 5:
                             bin=((Integer)modeloTabla.getValueAt(i, j));
+                            admin.getListaProductos().add(new Producto(id, category, bin, aisle, nombre, bin));
 
                             break;
                         default:
                             ;
+                        }
+//                        if (j == 5) {
+//                            System.out.println("Hola");
+//                            admin.getListaProductos().add(new Producto(id, category, bin, aisle, nombre, bin));
+//                        }
                     }
-                    }
+                    
                 }//fin primer for
                 
-                if (id ==0 || category == 0 || aisle == 0 || bin == 0 || nombre == null || precio == 0.0) {
-                    admin.getListaProductos().add(new Producto(id, category, bin, aisle, nombre, bin));
-
-                } else {
-                    admin.getListaProductos().add(new Producto(id, category, bin, aisle, nombre, bin));
-                }
-                
-               
             }
             admin.escribirArchivo();
     }
